@@ -19,3 +19,4 @@ src/*
 deploy.rb
 Capfile
 config/database.yml
+.DS_Store

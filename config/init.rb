@@ -6,6 +6,7 @@ dm_gems_version   = "0.9.6"
 # Uncomment the following two lines to develop with haml instead of erb.
 dependency "merb-haml", merb_gems_version
 dependency "merb-assets", merb_gems_version
+dependency "merb-helpers", merb_gems_version
 
 use_template_engine :haml
 

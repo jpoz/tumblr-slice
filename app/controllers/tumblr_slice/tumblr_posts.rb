@@ -1,10 +1,12 @@
 class TumblrSlice::TumblrPosts < TumblrSlice::Application
   # provides :xml, :yaml, :js
-  TUMBLR_ACCOUNT = 'jpoz'
+  TUMBLR_ACCOUNT = 'whoahbot'
 
   def index
-    TumblrPost.get(TUMBLR_ACCOUNT) if TumblrPost.check(TUMBLR_ACCOUNT)
-    @tumblr_posts = TumblrPost.all
+    if TumblrPost.check(TUMBLR_ACCOUNT)
+      TumblrPost.get(TUMBLR_ACCOUNT)
+    end
+    @tumblr_posts = TumblrPost.all(:order=> [:timestamp.desc])
     display @tumblr_posts
   end
 

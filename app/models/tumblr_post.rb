@@ -23,7 +23,11 @@ class TumblrPost
   end
 
   def self.check(acct, options = {})
-    find_or_new(:tumblr_id => get(acct, :start => 0, :num => 1 ).first.id ).new_record?
+    if find_or_new(:tumblr_id => get(acct, :start => 0, :num => 1 ).first.tumblr_id ).new_record?
+      true
+    else
+      false
+    end
   end
 
   def self.get(acct, options = {})
@@ -64,14 +68,14 @@ class TumblrPost
     post.text  = CGI::unescapeHTML((p/"regular-body").first.inner_html.to_s) if (p/"regular-body").first
   end
   
+  def self.extract_quote(p, post = TumblrPost.new)
+    post.title = CGI::unescapeHTML((p/"quote-source").first.inner_html.to_s) if (p/"quote-source").first
+    post.text  = CGI::unescapeHTML((p/"quote-text").first.inner_html.to_s) if (p/"quote-text").first
+  end
+  
   def self.extract_video(p, post = TumblrPost.new)
     post.title = CGI::unescapeHTML((p/"video-caption").first.inner_html.to_s) if (p/"video-caption").first
     post.text  = CGI::unescapeHTML((p/"video-source").first.inner_html.to_s) if (p/"video-source").first
-  end
-  
-  def self.extract_audio(p, post = TumblrPost.new)
-    post.title = CGI::unescapeHTML((p/"audio-caption").first.inner_html.to_s) if (p/"audio-caption").first
-    post.text  = CGI::unescapeHTML((p/"audio-player").first.inner_html.to_s) if (p/"audio-player").first
   end
   
   def self.extract_audio(p, post = TumblrPost.new)
@@ -85,8 +89,8 @@ class TumblrPost
   end
   
   def self.extract_link(p, post = TumblrPost.new)
-    post.title = CGI::unescapeHTML((p/"link-text").first.inner_html.to_s) if (p/"link-text").first
-    post.text  = CGI::unescapeHTML((p/"link-url").first.inner_html.to_s) if (p/"link-url").first
+    post.title = (p/"link-text").first.inner_html if (p/"link-text").first
+    post.text  = (p/"link-url").first.inner_html if (p/"link-url").first
   end
 
   #### To-do: build other post types
