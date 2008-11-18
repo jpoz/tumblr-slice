@@ -1,0 +1,2 @@
+- for tumblr_post in @tumblr_posts
+  = partial "tumblr_posts/types/#{tumblr_post.post_type}", :post => tumblr_post rescue "NO PARTIAL"

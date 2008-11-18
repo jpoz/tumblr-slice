@@ -1,0 +1,15 @@
+TODO:
+
+- Fix TumblrSlice.description and TumblrSlice.version
+- Fix LICENSE with your name
+- Fix Rakefile with your name and contact info
+- Add your code to lib/tumblr-slice.rb
+- Add your Merb rake tasks to lib/tumblr-slice/merbtasks.rb
+
+Remove anything that you don't need:
+
+- app/controllers/main.rb TumblrSlice::Main controller
+- app/views/layout/tumblr-slice.html.erb
+- spec/controllers/main_spec.rb controller specs
+- public/* any public files
+- stubs/* any stub files

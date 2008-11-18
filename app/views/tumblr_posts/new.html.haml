@@ -1,0 +1,13 @@
+%h1 TumblrPosts controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/tumblr_posts/new.html.erb
+
+= error_messages_for :tumblr_post
+
+= form_for(@tumblr_post, :action => url(:tumblr_posts) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:tumblr_posts)
