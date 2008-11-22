@@ -3,14 +3,7 @@ require File.join( File.dirname(__FILE__), '..', "spec_helper" )
 module TumblrPostSpecHelper
   def mock_feed(n=1)
     xml = File.read(
-      File.join( File.dirname(__FILE__), '../fixtures', "read.xml")
-    )
-    TumblrPost.should_receive(:open).at_least(n).times.and_return(xml)
-  end
-  
-  def mock_feed_new(n=1)
-    xml = File.read(
-      File.join( File.dirname(__FILE__), '../fixtures', "new.xml")
+      File.join( File.dirname(__FILE__), '../fixtures', "all_types.xml")
     )
     TumblrPost.should_receive(:open).at_least(n).times.and_return(xml)
   end
@@ -28,20 +21,20 @@ describe TumblrPost do
     end
     
     it "should populate the tumblr id" do
-      @posts.first.tumblr_id.should == 45874031
+      @posts.first.tumblr_id.should == 59615461
     end
 
     it "should populate the url-big" do
-      @posts.first.big_url.should == 'http://media.tumblr.com/1zcWg2WNicm68n52u15sbxtw_500.jpg'
+      TumblrPost.first(:conditions => ["post_type = 'photo'"]).big_url.should == 'http://data.tumblr.com/KZPtOc3DXg9xvo0gtwOrsrpPo1_500.jpg'
     end
 
     it "should populate the small-url" do
-      @posts.first.small_url.should == 'http://media.tumblr.com/1zcWg2WNicm68n52u15sbxtw_75sq.jpg'
+      TumblrPost.first(:conditions => ["post_type = 'photo'"]).small_url.should == 'http://data.tumblr.com/KZPtOc3DXg9xvo0gtwOrsrpPo1_75sq.jpg'
     end
 
     it "should populate the datetime" do 
       # I hate time... timestamp.should == DateTime.parse(..) passes with single run, if all test run it fails
-      datetime = DateTime.parse('Wed, 13 Aug 2008 17:22:07')
+      datetime = DateTime.parse('Fri, 14 Nov 2008 00:40:37')
       @posts.first.timestamp.year.should == datetime.year
       @posts.first.timestamp.month.should == datetime.month
       @posts.first.timestamp.day.should == datetime.day
@@ -50,7 +43,7 @@ describe TumblrPost do
     end
 
     it "should populate the caption" do
-      @posts.first.text.should == 'My office. Notice I&#8217;m the only one here&#8230; It&#8217;s been a long day.'
+      @posts.last.text.should == 'This is somee crazy stuff.. Yadda yadda&#8230;'
     end
 
     it "should return an array" do
