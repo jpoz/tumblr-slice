@@ -3,7 +3,7 @@ require 'open-uri'
 require 'cgi'
 require 'time'
 
-class TumblrPost
+class TumblrSlice::TumblrPost
   include DataMapper::Resource
 
   property :id, Serial
@@ -23,14 +23,10 @@ class TumblrPost
   end
 
   def self.check(acct, options = {})
-    if find_or_new(:tumblr_id => get(acct, :start => 0, :num => 1 ).first.tumblr_id ).new_record?
-      true
-    else
-      false
-    end
+    return find_or_new(:tumblr_id => download(acct, :start => 0, :num => 1, :save => false ).first.tumblr_id ).new_record?
   end
-
-  def self.get(acct, options = {})
+    
+  def self.download(acct, options = {})
     options = {:start => 0, :num => 15, :save => true}.merge(options)
     url = "http://#{acct}.tumblr.com/api/read?start=#{options[:start]}&num=#{options[:num]}"
     doc = Hpricot.XML(open(url))

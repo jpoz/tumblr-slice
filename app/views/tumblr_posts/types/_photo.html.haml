@@ -1,2 +1,4 @@
-%p= link_to( image_tag(post.med_url), post.big_url )
+%p
+  %a{ :href => post.big_url }
+    %img{ :src => post.med_url }
 %p= post.text

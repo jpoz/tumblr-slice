@@ -16,13 +16,14 @@ if defined?(Merb::Plugins)
   # :layout - the layout to use; defaults to :tumblr-slice
   # :mirror - which path component types to use on copy operations; defaults to all
   Merb::Slices::config[:tumblr_slice][:layout] ||= :tumblr_slice
+  Merb::Slices::config[:tumblr_slice][:account] ||= "poz"
   
   # All Slice code is expected to be namespaced inside a module
   module TumblrSlice
     
     # Slice metadata
     self.description = "TumblrSlice is a Merb slice which integrates your Tumblr account into your awesome merb app!"
-    self.version = "0.0.1"
+    self.version = "0.0.2"
     self.author = "James Pozdena"
     
     # Stub classes loaded hook - runs before LoadClasses BootLoader

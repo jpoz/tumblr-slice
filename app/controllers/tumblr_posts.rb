@@ -1,12 +1,11 @@
 class TumblrSlice::TumblrPosts < TumblrSlice::Application
   # provides :xml, :yaml, :js
-  TUMBLR_ACCOUNT = 'whoahbot'
 
   def index
-    if TumblrPost.check(TUMBLR_ACCOUNT)
-      TumblrPost.get(TUMBLR_ACCOUNT)
+    if TumblrSlice::TumblrPost.check(Merb::Slices::config[:tumblr_slice][:account])
+      TumblrSlice::TumblrPost.download(Merb::Slices::config[:tumblr_slice][:account])
     end
-    @tumblr_posts = TumblrPost.all(:order=> [:timestamp.desc])
+    @tumblr_posts = TumblrSlice::TumblrPost.all(:order=> [:timestamp.desc])
     display @tumblr_posts
   end
 

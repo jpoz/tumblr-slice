@@ -5,11 +5,11 @@ require 'merb-core'
 require 'merb-core/tasks/merb'
 
 GEM_NAME = "tumblr-slice"
-AUTHOR = "Your Name"
-EMAIL = "Your Email"
-HOMEPAGE = "http://merbivore.com/"
-SUMMARY = "Merb Slice that provides ..."
-GEM_VERSION = "1.0"
+AUTHOR = "James Pozdena"
+EMAIL = "jpoz@jpoz.net"
+HOMEPAGE = "jpoz.net"
+SUMMARY = "Merb Slice that provides access to your tumblr account"
+GEM_VERSION = "0.0.2"
 
 spec = Gem::Specification.new do |s|
   s.rubyforge_project = 'merb'
