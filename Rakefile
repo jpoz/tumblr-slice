@@ -4,7 +4,7 @@ require 'rake/gempackagetask'
 require 'merb-core'
 require 'merb-core/tasks/merb'
 
-GEM_NAME = "tumblr-slice"
+GEM_NAME = "tumblr_slice"
 AUTHOR = "James Pozdena"
 EMAIL = "jpoz@jpoz.net"
 HOMEPAGE = "jpoz.net"

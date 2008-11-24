@@ -47,20 +47,20 @@ namespace :slices do
     task :migrate do # see slicetasks.rb
     end
     
-    desc "Freeze TumblrSlice into your app (only tumblr-slice/app)" 
+    desc "Freeze TumblrSlice into your app (only tumblr_slice/app)" 
     task :freeze => [ "freeze:app" ]
 
     namespace :freeze do
       
       desc "Freezes TumblrSlice by installing the gem into application/gems"
       task :gem do
-        ENV["GEM"] ||= "tumblr-slice"
+        ENV["GEM"] ||= "tumblr_slice"
         Rake::Task['slices:install_as_gem'].invoke
       end
       
-      desc "Freezes TumblrSlice by copying all files from tumblr-slice/app to your application"
+      desc "Freezes TumblrSlice by copying all files from tumblr_slice/app to your application"
       task :app do
-        puts "Copying all tumblr-slice/app files to your application - resolves any collisions"
+        puts "Copying all tumblr_slice/app files to your application - resolves any collisions"
         copied, preserved = TumblrSlice.mirror_app!
         puts "- no files to copy" if copied.empty? && preserved.empty?
         copied.each { |f| puts "- copied #{f}" }
@@ -85,7 +85,7 @@ namespace :slices do
         preserved.each { |f| puts "! preserved override as #{f}" }
       end
       
-      desc "Freezes TumblrSlice as a gem and copies over tumblr-slice/app"
+      desc "Freezes TumblrSlice as a gem and copies over tumblr_slice/app"
       task :app_with_gem => [:gem, :app]
       
       desc "Freezes TumblrSlice by unpacking all files into your application"

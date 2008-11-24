@@ -3,7 +3,7 @@ if defined?(Merb::Plugins)
   $:.unshift File.dirname(__FILE__)
 
   load_dependency 'merb-slices'
-  Merb::Plugins.add_rakefiles "tumblr-slice/merbtasks", "tumblr-slice/slicetasks", "tumblr-slice/spectasks"
+  Merb::Plugins.add_rakefiles "tumblr_slice/merbtasks", "tumblr_slice/slicetasks", "tumblr_slice/spectasks"
 
   # Register the Slice for the current host application
   Merb::Slices::register(__FILE__)
